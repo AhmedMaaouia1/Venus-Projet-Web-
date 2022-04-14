@@ -1,0 +1,53 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body 
+{
+    background-color: #efefef;
+    font-family: sans-serif;
+}
+.contact-box
+{
+    width: 430px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #999;
+    top: 25%;
+    left: 32%;
+    transform: translate(50% .50%);
+    position: relative;
+    
+}
+form
+{
+    margin: 35px;
+} 
+.input-field
+{
+    width: 350px;
+    height: 40px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #777;
+   border-radius: 14px;
+    outline: none;
+
+}
+.textarea-field
+{
+    height: 200px;
+    padding-top: 10x; 
+}
+.btn
+{
+    border-radius: 20px;
+    color: #fff;
+    margin-top: 18px;
+    padding: 10px;
+    background-color: #fa558f;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
