@@ -23,23 +23,20 @@ include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
             }
         }
         
-        function gettopicbyID($id)
-        {
-            $requete = "select * from Topic where idtopic=:id";
-            $connexiondb = connexiondb::getConnexion();
-            try {
-                $querry = $connexiondb->prepare($requete);
-                $querry->execute(
-                    [
-                        'id'=>$id
-                    ]
-                );
-                $result = $querry->fetch();
-                return $result ;
-            } catch (PDOException $th) {
-                 $th->getMessage();
-            }
-        }
+        function recuperertopic($idtopic){
+			$sql="SELECT * from Topic where idtopic=$idtopic";
+			$connexiondb = connexiondb::getConnexion();
+			try{
+				$query=$connexiondb->prepare($sql);
+				$query->execute();
+
+				$Topic=$query->fetch();
+				return $Topic;
+			}
+			catch (Exception $e){
+				die('Erreur: '.$e->getMessage());
+			}
+		}
 
         function ajoutertopic($Topic)
         {
@@ -60,27 +57,28 @@ include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
                  $th->getMessage();
             }
         }
-        function modifiertopic($Topic)
-        {
-            $connexiondb = connexiondb::getConnexion();
-            try {
-                $querry = $connexiondb->prepare('
-                UPDATE Topic SET
-                titre=:titre,descrip=:descrip,contenu=:contenu
-
-                where idtopic=:idtopic
-                ');
-                $querry->execute([
-                    'titre'=>$Topic->gettitre(),
+        function modifiertopic($Topic, $idtopic){
+			try {
+				$connexiondb = connexiondb::getConnexion();
+				$query = $connexiondb->prepare(
+					'UPDATE Topic SET 
+						titre= :titre, 
+						descrip= :descrip, 
+						contenu= :contenu, 
+						
+					WHERE idtopic= :idtopic'
+				);
+				$query->execute([
+					'titre'=>$Topic->gettitre(),
                     'descrip'=>$Topic->getdescrip(),
                     'contenu'=>$Topic->getcontenu(),
-
-
-                ]);
-            } catch (PDOException $th) {
-                 $th->getMessage();
-            }
-        }
+					'idtopic' => $idtopic
+				]);
+				echo $query->rowCount() . " records UPDATED successfully <br>";
+			} catch (PDOException $e) {
+				$e->getMessage();
+			}
+		}
 
         function supprimertopic($id)
         {

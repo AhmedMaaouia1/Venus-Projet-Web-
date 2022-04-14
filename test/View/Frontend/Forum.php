@@ -1,8 +1,20 @@
-<?php require 'Header.php' ?>
-<head>
+<?php require 'Header.php'; ?>
+<?php
+                            require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
+
+                        
+                            $TopicC = new topicC();
+                            $Topics = $TopicC->affichertopic();
+                        ?>
+
+    <html lang="en">
     
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
+    
+    <head>
+    
+    <link href="styleforum.css" rel="stylesheet" /> 
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
     <!-- Slicknav -->
@@ -15,79 +27,175 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-   
-    <!--forum style-->
-    <link rel="stylesheet" type ="text/css" href="css/Stykeforum.css">
-   
-  </head>
+    <!-- CSS here -->
+    
+        <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets1/css/flaticon.css">
+        <link rel="stylesheet" href="assets1/css/slicknav.css">
+        <link rel="stylesheet" href="assets1/css/animate.min.css">
+        <link rel="stylesheet" href="assets1/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets1/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="assets1/css/themify-icons.css">
+        <link rel="stylesheet" href="assets1/css/slick.css">
+        <link rel="stylesheet" href="assets1/css/nice-select.css">
+        <link rel="stylesheet" href="assets1/css/style.css">
+</head>
+
+    
 
 
 
-<br>
-<div class="input-group rounded">
-  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-  <span class="input-group-text border-0" id="search-addon">
-    <i class="fas fa-search"></i>
-  </span>
-</div>
-	
+
+
+  
+
+
+</head>
 
 
 
-        
-    <div class="subforum">
-                <div class="subforum-title">
-                    <h1>Forum Règles:</h1>
-                </div>
-                <div class="subforum-row">
-                    <div class="subforum-icon subforum-column center">
-                    <i class="fas fa-comment"></i>
+    <body>
+    
+      <!--? Hero Area Start-->
+      <div class="slider-area ">
+            <div class="single-slider slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Forum</h2>
+                            </div>
+                        </div>
                     </div>
-                    <div class="subforum-description subforum-column">
-                        <h4>10/12/2021</h4>
-                        <p>ICI, vous trouvez les Règles du forum que vous devez lire avant de mettre un commentaire	</p>
-                    </div>
-                    
                 </div>
             </div>
+        </div>
+       
+<?php
+    require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
+$connexiondb=connexiondb::getConnexion();
 
-            <div class="subforum">
-                <div class="subforum-title">
-                    <h1>Titre 1</h1>
-                </div>
-                <div class="subforum-row">
-                    <div class="subforum-icon subforum-column center">
-                    <i class="fas fa-comment"></i>
-                    </div>
-                    <div class="subforum-description subforum-column">
-                        <h4>Desicription 1</h4>
-                        <p>Contenu 1</p>
-                    </div>
-                    
-                    
-                </div>
+if (isset($_POST["submit"])) {
+	$str = $_POST["search"];
+	$sth = $connexiondb->prepare("SELECT * FROM `topic` WHERE titre = '$str'");
+
+	$sth->setFetchMode(PDO:: FETCH_OBJ);
+	$sth -> execute();
+
+	if($Topic = $sth->fetch())
+	{
+		?>
+		<br><br><br>
+        <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
+                                    
+                                    <a href="#" class="blog_item_date">
+                                        <h3>15</h3>
+                                        <p>Jan</p>
+                                    </a>
+                                </div>
+
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="regle.php">
+                                        <h2><?php echo $Topic->titre; ?></h2>
+                                        <h4><?php echo $Topic->descrip; ?></h4>
+                                    </a>
+                                    <p><?php echo $Topic->contenu; ?></p>
+                                    <ul class="blog-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+        
+       
+<?php 
+	}
+		
+		
+		else{
+			echo "Name Does not exist";
+        }
+    }
+    ?>
     
-            <div class="subforum">
-                <div class="subforum-title">
-                    <h1>Titre 2</h1>
-                </div>
-                <div class="subforum-row">
-                    <div class="subforum-icon subforum-column center">
-                    <i class="fas fa-comment"></i>
-                    </div>
-                    <div class="subforum-description subforum-column">
-                        <h4>description test2</h4>
-                        <p>Contenu test2</p>
-                    </div>
-                    
-                    
-                </div>
+   
+    <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
+                                    <a href="#" class="blog_item_date">
+                                        <h3>15</h3>
+                                        <p>Jan</p>
+                                    </a>
+                                </div>
+
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="regle.php">
+                                        <h2>Forum Règles:</h2>
+                                    </a>
+                                    <p>CI, vous trouvez les Règles du forum que vous devez lire avant de mettre un commentaire.</p>
+                                    <ul class="blog-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+    
+          
             
-               
+ <?php                 
+                
+                    $i=0;
+                        foreach ($Topics as $Topic) {
+                         $i++;  
+            
+                ?>
+              
+              <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
+                                    <a href="#" class="blog_item_date">
+                                        <h3>15</h3>
+                                        <p>Jan</p>
+                                </div>
+
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="regle.php">
+                                        <h2><a <?= $Topic['idtopic']; ?>>Topic <?php echo $i; ?>: <?= $Topic['titre']; ?></a></h2>
+                                        <h4><?= $Topic['descrip']; ?></h4>
+                                    </a>
+                                    <p><?= $Topic['contenu']; ?></p>
+                                    <ul class="blog-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+             
+
+           
+            
+                <?php
+                        }
+                    
+                ?>
        
     
                
             </div>
 
+
+      
+
+   
+
+ 
+
+
+
+
 </body>
-<?php require "Footer.php" ?>
+
+</html>
+<?php require 'Footer.php'; ?>

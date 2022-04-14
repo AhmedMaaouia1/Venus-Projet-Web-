@@ -46,7 +46,7 @@ style='border: hidden; border: 0;  outline: none; border-radius: 5px;
                             <td><?php echo $Topic['titre'] ; ?></td>
                             <td><?php echo $Topic['descrip'] ; ?></td>
                             <td><?php echo $Topic['contenu'] ; ?></td>
-							<td><a href='#'><i class='fas fa-edit mr-1' style='color:#fd6c9e'></i></a>
+							<td><a href='modifierforum.php'><i class='fas fa-edit mr-1' style='color:#fd6c9e'></i></a>
 							<a  href="supprimertopic.php?id=<?php echo $Topic['idtopic'] ; ?>"><i class='fas fa-trash-alt ml-1' style='color:#fd6c9e'></i></a></td>
                         </tr>
                         
