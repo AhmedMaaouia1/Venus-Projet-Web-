@@ -1,78 +1,62 @@
 <?php require 'Header_Admin.php'; ?>
 <?php
-include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
-require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php';
-   
-$error = "";
 
-    // create adherent
-    $topic = null;
+require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
+require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php' ;
 
-    // create an instance of the controller
-    $topicC = new topicC();
-    if (
-        isset($_POST["titre"]) &&
-		isset($_POST["descrip"]) &&		
-        isset($_POST["contenu"]) 
-	
-    ) {
-        if (
-            !empty($_POST["titre"]) && 
-			!empty($_POST['descrip']) &&
-            !empty($_POST["contenu"]) 
-        ) {
-            $topic = new Topic(
-                $_POST['titre'],
-				$_POST['descrip'],
-                $_POST['contenu'], 
-				
-            );
-            $topicC->modifiertopic($Topic, $_POST["idtopic"]);
-            header('Location:liste_forum.php');
-        }
-        else
-            $error = "Missing information";
-    }    
+$TopicC = new topicC();
+
+$topic_list = $TopicC->affichertopic();;
+
+
+if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) && isset($_POST['contenu'] )) 
+{
+        
+        $Topic = new topic($_POST['titre'] ,$_POST['descrip'],$_POST['contenu']);
+        $TopicC->modifiertopic($Topic, $_GET['id']);
+        echo $_GET['id'];
+        header('Location:liste_forum.php');
+}else
+{
+    $a = $TopicC->gettopicbyID($_GET['id']) ;
+}
+
+
 ?>
+
+
+<!doctype html>
 <html lang="en">
+ 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-    <body>
-    <a href="liste_forum.php" class="btn btn" style="background-color:#fd6c9e;color:white" >retourner </a>
-      
-        
-        
-		<?php
-			if (isset($_POST['idtopic'])){
-				$Topic = $topicC->recuperertopic($_POST['idtopic']);
-				
-		?>
-        
-        <form action="" method="POST">
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid">
+                                                <br><br><br>
+                                    <form action="" method="POST">
                                             <table border="1" align="center">
-                                                
                                                 <tr>
                                                     <td>
                                                         <label for="titre">titre:
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $Topic['titre'];?>" name="titre" id="titre" maxlength="20"></td>
+                                                    <td><input type="text" value="<?php echo $a['titre'];?>" name="titre" id="titre" maxlength="20"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <label for="descrip">description:
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $Topic['descrip'];?>" name="descrip" id="descrip" maxlength="40"></td>
+                                                    <td><input type="text" value="<?php echo $a['descrip'];?>" name="descrip" id="descrip" maxlength="40"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <label for="contenu">contenu :
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $Topic['contenu'];?>" name="contenu" id="contenu" ></td>
+                                                    <td><input type="text" value="<?php echo $a['contenu'];?>" name="contenu" id="contenu" ></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -84,8 +68,46 @@ $error = "";
                                                 </tr>
                                             </table>
                                         </form>
-		<?php
-		}
-		?>
-    </body>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        // binding the check all box to onClick event
+        $(".chk_all").click(function() {
+
+            var checkAll = $(".chk_all").prop('checked');
+            if (checkAll) {
+                $(".checkboxes").prop("checked", true);
+            } else {
+                $(".checkboxes").prop("checked", false);
+            }
+
+        });
+
+        // if all checkboxes are selected, then checked the main checkbox class and vise versa
+        $(".checkboxes").click(function() {
+
+            if ($(".checkboxes").length == $(".subscheked:checked").length) {
+                $(".chk_all").attr("checked", "checked");
+            } else {
+                $(".chk_all").removeAttr("checked");
+            }
+
+        });
+
+    });
+    </script>
+</body>
+ 
 </html>

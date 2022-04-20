@@ -23,6 +23,7 @@
     <a href="liste_commandes.php">Commandes</a>
     <a href="liste_evenements.php">Evénements</a>
     <a href="liste_forum.php">Forum</a>
+    <a href="liste_commentaire.php">Commentaire</a>
     <a href="liste_reclamations.php">reclamation</a>
     <a href="listadmin.php">Administrateurs</a>
 	

@@ -1,7 +1,7 @@
 <?php
 
-    require_once '../assets/Utils/config.php';
-    require_once '../model/comments.php';
+    require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
+    require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/comments.php';
 
 
     Class commentsC {
@@ -9,8 +9,8 @@
    
         public function afficherTcomments($idtopic){
             try{
-                $config = config::getConnexion();
-                $querry = $config->prepare(
+                $connexionDB = connexionDB::getConnexion();
+                $querry = $connexionDB->prepare(
                     'SELECT * FROM comments where id_topic =:id'
                 );
                 $querry->execute([
@@ -24,9 +24,9 @@
         function affichercomments()
         {
             $requete = "select * from comments";
-            $config = config::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $config->prepare($requete);
+                $querry = $connexionDB->prepare($requete);
                 $querry->execute();
                 $result = $querry->fetchAll();
                 return $result ;
@@ -37,9 +37,9 @@
         function getcommentsbyID($id)
         {
             $requete = "select * from comments where idcom=:id";
-            $config = config::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $config->prepare($requete);
+                $querry = $confconnexionDBig->prepare($requete);
                 $querry->execute(
                     [
                         'id'=>$id
@@ -54,9 +54,9 @@
 
         function ajoutercomments($Comments)
         {
-            $config = config::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $config->prepare('
+                $querry = $connexionDB->prepare('
                 INSERT INTO comments 
                 (idcom,id_topic,contenu)
                 VALUES
@@ -73,9 +73,9 @@
         }
         function modifiercomments($Comments,$idcom)
         {
-            $config = config::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $config->prepare('
+                $querry = $connexionDB->prepare('
                 UPDATE Comments SET
                 contenu=:contenu
                 where idcom=:idcom
@@ -91,9 +91,9 @@
 
         function supprimercomments($id)
         {
-            $config = config::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $config->prepare('
+                $querry = $connexionDB->prepare('
                 DELETE FROM Comments WHERE idcom =:id
                 ');
                 $querry->execute([

@@ -2,11 +2,11 @@
 <body>
 
 <div class="container mt-5">
- <h1 class="text-center text-capitalize">Forum</h1>
+ <h1 class="text-center text-capitalize">Commentaires</h1>
 <div class="text-end">
 
 
-<a href="ajoutertopic.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Ajouter un Forum</a>
+<a href="ajoutercommentaire.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Ajouter un commentaire</a>
 
 
 </div>
@@ -18,13 +18,12 @@
 style='border: hidden; border: 0;  outline: none; border-radius: 5px;
  border-bottom: 1px solid silver;   'class='mt-5' type='text' placeholder='Rechercher..' name='search'>
 <!---End searchbar--->
-                            <?php
-                            require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
+<?php
+                            require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/commentsC.php';
                         
-                            $TopicC = new topicC();
-                            $Topic = $TopicC->affichertopic();
+                            $CommentsC = new commentsC();
+                            $Comments = $CommentsC->affichercomments();
                         ?>
-                        
                         
                         <html>
                             <head>
@@ -32,22 +31,22 @@ style='border: hidden; border: 0;  outline: none; border-radius: 5px;
                         
  <div class='table-responsive'>
 <table class='table'><thead>
-<th scope='col'> titre </th>
-<th scope='col'>Description</th>
+<th scope='col'> idcom </th>
+<th scope='col'>id_topic</th>
 <th scope='col'> Contenu </th>
 <th> Action </th>
 </tr></thead>  <tbody id='myUL'>
-                                <?php 
-                                        foreach ($Topic as $Topic) {
+<?php 
+                                        foreach ($Comments as $Comments) {
                                 ?>
                         
                         
                         <tr>
-                            <td><?php echo $Topic['titre'] ; ?></td>
-                            <td><?php echo $Topic['descrip'] ; ?></td>
-                            <td><?php echo $Topic['contenu'] ; ?></td>
-							<td><a href="modifierforum.php?id=<?php echo $Topic['idtopic'] ; ?>"><i class='fas fa-edit mr-1' style='color:#fd6c9e'></i></a>
-							<a  href="supprimertopic.php?id=<?php echo $Topic['idtopic'] ; ?>"><i class='fas fa-trash-alt ml-1' style='color:#fd6c9e'></i></a></td>
+                        <td><?php echo $Comments['idcom'] ; ?></td>
+                        <td><?php echo $Comments['id_topic'] ; ?></td>
+                        <td><?php echo $Comments['contenu'] ; ?></td>
+			<td><a href="modifiercomments.php?idcom=<?php echo $Comments['idcom'] ; ?>"><i class='fas fa-edit mr-1' style='color:#fd6c9e'></i></a>
+			<a href="supprimercomments.php?id=<?php echo $Comments['idcom'] ; ?>"><i class='fas fa-trash-alt ml-1' style='color:#fd6c9e'></i></a></td>
                         </tr>
                         
                         

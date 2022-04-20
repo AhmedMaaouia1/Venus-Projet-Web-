@@ -12,9 +12,9 @@
     
     <head>
     
-    <link href="styleforum.css" rel="stylesheet" /> 
- <!-- Bootstrap CSS -->
- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
+    
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
     <!-- Slicknav -->
@@ -27,17 +27,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+    <!--<link rel="stylesheet"  href="event.css">-->
     <!-- CSS here -->
-    
-        <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets1/css/flaticon.css">
-        <link rel="stylesheet" href="assets1/css/slicknav.css">
-        <link rel="stylesheet" href="assets1/css/animate.min.css">
-        <link rel="stylesheet" href="assets1/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets1/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets1/css/themify-icons.css">
-        <link rel="stylesheet" href="assets1/css/slick.css">
-        <link rel="stylesheet" href="assets1/css/nice-select.css">
         <link rel="stylesheet" href="assets1/css/style.css">
 </head>
 
@@ -85,7 +76,7 @@ if (isset($_POST["submit"])) {
 	if($Topic = $sth->fetch())
 	{
 		?>
-		<br><br><br>
+		
         <article class="blog_item">
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
@@ -104,7 +95,7 @@ if (isset($_POST["submit"])) {
                                     <p><?php echo $Topic->contenu; ?></p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -137,7 +128,7 @@ if (isset($_POST["submit"])) {
                                     <p>CI, vous trouvez les Règles du forum que vous devez lire avant de mettre un commentaire.</p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> Comments</a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -168,7 +159,7 @@ if (isset($_POST["submit"])) {
                                     <p><?= $Topic['contenu']; ?></p>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
                                     </ul>
                                 </div>
                             </article>

@@ -1,8 +1,7 @@
 <?php
 
-include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
-    include "C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php";
-    
+    require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
+    require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php';
 
 
     Class topicC {
@@ -12,9 +11,9 @@ include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
         function affichertopic()
         {
             $requete = "select * from topic";
-            $connexiondb = connexiondb::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $connexiondb->prepare($requete);
+                $querry = $connexionDB->prepare($requete);
                 $querry->execute();
                 $result = $querry->fetchAll();
                 return $result ;
@@ -23,26 +22,30 @@ include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
             }
         }
         
-        function recuperertopic($idtopic){
-			$sql="SELECT * from Topic where idtopic=$idtopic";
-			$connexiondb = connexiondb::getConnexion();
-			try{
-				$query=$connexiondb->prepare($sql);
-				$query->execute();
-
-				$Topic=$query->fetch();
-				return $Topic;
-			}
-			catch (Exception $e){
-				die('Erreur: '.$e->getMessage());
-			}
-		}
+        
+        function gettopicbyID($id)
+        {
+            $requete = "select * from Topic where idtopic=:id";
+            $connexionDB = connexionDB::getConnexion();
+            try {
+                $querry = $connexionDB->prepare($requete);
+                $querry->execute(
+                    [
+                        'id'=>$id
+                    ]
+                );
+                $result = $querry->fetch();
+                return $result ;
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
 
         function ajoutertopic($Topic)
         {
-            $connexiondb = connexiondb::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $connexiondb->prepare('
+                $querry = $connexionDB->prepare('
                 INSERT INTO Topic 
                 (titre,descrip,contenu)
                 VALUES
@@ -57,34 +60,34 @@ include 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
                  $th->getMessage();
             }
         }
-        function modifiertopic($Topic, $idtopic){
-			try {
-				$connexiondb = connexiondb::getConnexion();
-				$query = $connexiondb->prepare(
-					'UPDATE Topic SET 
-						titre= :titre, 
-						descrip= :descrip, 
-						contenu= :contenu, 
-						
-					WHERE idtopic= :idtopic'
-				);
-				$query->execute([
-					'titre'=>$Topic->gettitre(),
+        function modifiertopic($Topic,$idtopic)
+        {
+            $connexionDB = connexionDB::getConnexion();
+            try {
+                $querry = $connexionDB->prepare('
+                UPDATE Topic SET
+                titre=:titre,descrip=:descrip,contenu=:contenu
+
+                where idtopic=:idtopic
+                ');
+                $querry->execute([
+                    'idtopic'=>$idtopic,
+                    'titre'=>$Topic->gettitre(),
                     'descrip'=>$Topic->getdescrip(),
                     'contenu'=>$Topic->getcontenu(),
-					'idtopic' => $idtopic
-				]);
-				echo $query->rowCount() . " records UPDATED successfully <br>";
-			} catch (PDOException $e) {
-				$e->getMessage();
-			}
-		}
+
+
+                ]);
+            } catch (PDOException $th) {
+                 $th->getMessage();
+            }
+        }
 
         function supprimertopic($id)
         {
-            $connexiondb = connexiondb::getConnexion();
+            $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $connexiondb->prepare('
+                $querry = $connexionDB->prepare('
                 DELETE FROM Topic WHERE idtopic =:id
                 ');
                 $querry->execute([
