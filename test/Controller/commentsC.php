@@ -39,7 +39,7 @@
             $requete = "select * from comments where idcom=:id";
             $connexionDB = connexionDB::getConnexion();
             try {
-                $querry = $confconnexionDBig->prepare($requete);
+                $querry = $connexionDB->prepare($requete);
                 $querry->execute(
                     [
                         'id'=>$id

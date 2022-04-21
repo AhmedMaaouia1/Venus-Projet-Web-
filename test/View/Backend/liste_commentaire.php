@@ -6,7 +6,7 @@
 <div class="text-end">
 
 
-<a href="ajoutercommentaire.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Ajouter un commentaire</a>
+
 
 
 </div>

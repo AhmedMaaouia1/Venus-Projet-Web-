@@ -1,34 +1,37 @@
 <?php require 'Header_Admin.php'; ?>
 <?php
 
-require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
-require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php' ;
+require_once     'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/commentsC.php';
+require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/comments.php' ;
+require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/TopicC.php';
+$commentsV=new commentsC();
+$b=$_GET['idcom'];
+echo $_GET['idcom'];
 
-$TopicC = new topicC();
-
-$topic_list = $TopicC->affichertopic();;
-
-
-if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) && isset($_POST['contenu'] )) 
-{
+if (isset($_POST['contenu'])) 
+{           
+    echo $_GET['idcom'];
         
-        $Topic = new topic($_POST['titre'] ,$_POST['descrip'],$_POST['contenu']);
-        $TopicC->modifiertopic($Topic, $_GET['id']);
-        echo $_GET['id'];
-        header('Location:liste_forum.php');
-}else
-{
-    $a = $TopicC->gettopicbyID($_GET['id']) ;
+         $Comments = new comments(NULL,$_POST['id_topic'], $_POST['contenu']);
+         $commentsV->modifiercomments($Comments,$b);
+        header('Location:liste_commentaire.php');
+}
+else {
+    $x=$commentsV->getcommentsbyID($b);
+    echo $_GET['idcom'];
+
 }
 
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
  
 <head>
+
+</head>
+
+<body>
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
@@ -37,26 +40,13 @@ if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) 
                                                 <br><br><br>
                                     <form action="" method="POST">
                                             <table border="1" align="center">
-                                                <tr>
-                                                    <td>
-                                                        <label for="titre">titre:
-                                                        </label>
-                                                    </td>
-                                                    <td><input type="text" value="<?php echo $a['titre'];?>" name="titre" id="titre" maxlength="20"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label for="descrip">description:
-                                                        </label>
-                                                    </td>
-                                                    <td><input type="text" value="<?php echo $a['descrip'];?>" name="descrip" id="descrip" maxlength="40"></td>
-                                                </tr>
+                                               
                                                 <tr>
                                                     <td>
                                                         <label for="contenu">contenu :
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $a['contenu'];?>" name="contenu" id="contenu" ></td>
+                                                    <td><input type="text" value="<?php echo $x['contenu']; ?>" name="contenu" id="contenu" ></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -75,7 +65,6 @@ if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) 
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
- 
 </body>
  
 </html>

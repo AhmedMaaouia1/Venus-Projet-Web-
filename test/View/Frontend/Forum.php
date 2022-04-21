@@ -1,4 +1,4 @@
-<?php require 'Header.php'; ?>
+
 <?php
                             require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
 
@@ -6,7 +6,7 @@
                             $TopicC = new topicC();
                             $Topics = $TopicC->affichertopic();
                         ?>
-
+<?php require 'Header.php'; ?>
     <html lang="en">
     
     

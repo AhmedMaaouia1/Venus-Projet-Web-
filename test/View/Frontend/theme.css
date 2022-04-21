@@ -1,0 +1,545 @@
+/* ########################################### */
+/*                 Global                      */
+/* ########################################### */
+*{
+  box-sizing: border-box;
+}
+
+html{
+
+  background-color:rgb(255, 255, 255);
+  color:#FEFEFE;
+}
+
+.subforum-title a{
+  color:#ff9900 !important;;
+  font-weight: bolder;
+  text-decoration: none !important;;
+}
+
+h1{
+  font-size:16px;
+  font-weight: bolder;
+}
+
+
+main nav{
+  background-color: rgb(255, 255, 255, 0.5) !important;
+}
+
+/* ########################################### */
+/*           Forums.html                       */
+/* ########################################### */
+.container{
+  margin: 20px;
+  padding: 20px;
+}
+
+.subforum{
+  margin-top:20px;
+}
+
+.subforum-title{
+  background-color:#0961e4;
+  padding: 5px;
+  border-radius: 5px;
+  margin:4px;
+}
+
+.subforum-row{
+  display: grid;
+  grid-template-columns: 7% 93% ;
+}
+
+.subforum-column{
+  padding: 10px;
+  margin:4px;
+  border-radius: 5px;
+  background-color:#ff9900;
+}
+
+.subforum-description *{
+  margin-block: 0;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subforum-icon i{
+  font-size: 45px;
+}
+
+.subforum-devider{
+  display: none;   
+}
+
+
+/* For the smartphones */
+@media screen and (max-width: 460px) {
+  .container{
+      margin: 10px;
+      padding: 10px;
+  }
+
+  .subforum-row{
+      display: grid;
+      grid-template-columns: 25% 75%;
+      grid-template-rows: 65% 35%;
+  }
+
+  .subforum-devider{
+      display: block;
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(190, 190, 190, 0), rgba(255, 255, 255, 0.75), rgba(190, 190, 190, 0));
+  }
+
+  
+
+}
+
+/* For the tablets */
+@media screen and (min-width: 460px) and (max-width: 1024px) {
+  .container{
+      margin: 15px;
+      padding: 15px;
+  }
+
+  .subforum-row{
+      display: grid;
+      grid-template-columns: 10% 60% 10% 20%;
+  }
+
+  .subforum-icon i{
+      font-size: 35px;
+  }
+
+  html{
+      font-size: 14px;
+  }
+
+  h1{
+      font-size: 16px;
+  }
+
+}
+
+/* Search Box styles */
+.search-box{
+  border: solid 1px #52057b;
+  margin-top: 20px;
+  padding: 40px;
+  display:flex;
+  justify-content: center;
+  box-shadow:1px 2px 3px #52057b;
+}
+
+.search-box select{
+  padding: 10px;
+}
+
+.search-box input{
+  padding: 10px;
+}
+
+.search-box button{
+  padding: 10px;
+  background-color:#fff;
+  color:#000000;
+}
+
+.search-box button:hover{
+  background-color: #000000;
+  color: #fff;
+  box-shadow: 1px 2px 3px #fff;
+}
+
+/* search box for smrtphones */
+@media screen and (max-width: 460px){
+  .search-box input, .search-box button, .search-box select{
+      min-width: 300px;
+      margin-top: 5px;
+  }    
+
+}
+
+/* forum info Styling */
+.forum-info{
+  padding: 20px;
+  background-color: #111314;
+}
+
+.chart{
+  font-size:20px;
+  font-weight:bold;
+}
+footer{
+  margin-bottom: 0px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color:  white;
+  display: block;
+  text-align: center;
+}
+
+/* ########################################### */
+/*            posts.html                       */
+/* ########################################### */
+
+/* posts table's head  */
+.table-head{
+  display: flex;
+}
+
+.table-head div{
+  padding: 5px;
+  margin: 2px;
+  background-color: #9fec5c;
+  font-weight: bold;
+}
+
+.table-head .status{
+  flex: 5%;
+}
+
+.table-head .subjects{
+  flex: 85%;
+}
+.table-head .username{
+  flex: 10%;
+}
+
+/* posts table's body  */
+
+.table-row{
+  display: flex;
+}
+
+.table-row .status, .table-row .subjects,.table-row .username{
+  padding: 5px;
+  margin: 2px;
+  background-color: #9fec5c;
+}
+
+.table-row .status{
+  flex: 5%;
+  font-size: 30px;
+  text-align: center;
+}
+
+.table-row .subjects{
+  flex: 85%;
+  color: #000000;
+  font-size: 20px;
+}
+
+.table-row .username{
+  flex: 10%;
+  color: #ff0000;
+  font-size: 20px;
+}
+
+/* navigation path*/
+.navigate{
+  margin-block: 20px;
+  font-weight: lighter;
+  font-size: 24px;
+}
+
+.navigate a{
+  color: #fff;
+}
+
+
+
+/* Pagination*/
+
+.pagination{
+  padding: 20px;
+  font-size: 15px;
+}
+
+.pagination a{
+  color: #fff;
+  margin-inline: 5px;
+  padding: 5px 10px;
+  border: solid 0.5px #fff;
+}
+
+.pagination a:hover{
+  opacity: 0.5;
+}
+
+.note{
+  background-color:#111314;
+  padding: 20px;
+  display: block;
+}
+
+.note span{
+  font-size: 20px;
+  margin-block: 5px;
+}
+
+
+/* ########################################### */
+/*            detail.html                      */
+/* ########################################### */
+
+.head{
+  display: flex;
+  background-color: #2C2C2C;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.authors{
+  flex: 20%;
+}
+
+.content{
+  flex: 80%;
+}
+
+.body{
+  display: flex;
+  background-color: #131415;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.body .authors .username{
+  font-size: 20px;
+}
+
+.body .authors img{
+  max-width: 50px;
+  max-height: 80px;
+}
+
+.body .content .comment button{
+  border:none;
+  padding:10px;
+  font-weight: bolder;
+  box-shadow: 4px 6px #fff;
+  cursor: pointer;
+  float: right;
+}
+
+/* comment section */
+.comment-area{
+  margin-bottom:50px;
+}
+
+.comment-area textarea{
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  margin-block: 10px;
+}
+
+.comment-area input{
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.comment-area input:hover{
+  border: solid 1px #000000;
+}
+
+
+
+
+.bg-contact3 {
+  width: 100%;  
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.container-contact3 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: rgba(255,255,255,0.8);
+  
+}
+
+.wrap-contact3 {
+  width: 500px;
+  background: #80c64a;
+  background: -webkit-linear-gradient(45deg, #56ab2f, #a8e063);
+  background: -o-linear-gradient(45deg, #56ab2f, #a8e063);
+  background: -moz-linear-gradient(45deg, #56ab2f, #a8e063);
+  background: linear-gradient(45deg, #ab2f8f, #0e0d0e);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 72px 55px 65px 55px;
+}
+
+
+.contact3-form {
+  width: 100%;
+}
+
+.contact3-form-title {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 39px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 70px;
+}
+
+.wrap-input3 {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid rgba(255,255,255,0.24);
+  margin-bottom: 27px;
+}
+
+.input3 {
+  display: block;
+  width: 100%;
+  background: transparent;
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  padding: 0 5px;
+}
+
+.focus-input3 {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.focus-input3::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  background: #fff;
+}
+input.input3 {
+  height: 45px;
+}
+
+
+textarea.input3 {
+  min-height: 115px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+
+.input3:focus + .focus-input3::before {
+  width: 100%;
+}
+
+.has-val.input3 + .focus-input3::before {
+  width: 100%;
+}
+
+/*------------------------------------------------------------------
+[  ]*/
+.container-contact3-form-btn {
+  padding-top: 23px;
+}
+
+.contact3-form-btn {
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  min-width: 120px;
+  height: 50px;
+  border-radius: 2px;
+  position: relative;
+  z-index: 1;
+  background: #80c64a;
+  background: -webkit-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: -o-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: -moz-linear-gradient(-135deg, #56ab2f, #a8e063);
+  background: linear-gradient(-135deg, #000000, #000000);
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.contact3-form-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #fff;
+  opacity: 1;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.contact3-form-btn:hover {
+  color: #fff;
+}
+
+.contact3-form-btn:hover:before {
+  opacity: 0;
+}
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+@media (max-width: 576px) {
+  .wrap-contact3 {
+    padding: 72px 15px 65px 15px;
+  }
+}

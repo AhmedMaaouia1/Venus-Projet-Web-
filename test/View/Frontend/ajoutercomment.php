@@ -1,7 +1,5 @@
 
-<?php require 'Header.php'; ?>
 <?php
-
 require_once     'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/commentsC.php';
 require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/comments.php' ;
 require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/TopicC.php';
@@ -15,9 +13,30 @@ if (isset($_POST['contenu'] ))
         $CommentsC->ajoutercomments($Comments);
         header('Location:Forum.php');
 }
+ require 'Header.php' ?>
+<script>
+    
+    function saisircontenu() {
+                var contenuu = document.getElementById('contenu').value;
+                var regex = /^[A-Za-z]+$/;
 
 
-?>
+                if (!(regex.test(contenuu))) {
+                    document.getElementById("errorcontenuu").textContent = "contenuu has to be composed of letters only!";
+                    document.getElementById("errorcontenuu").style.color = "red";
+                    return 0;
+                } 
+                else if (contenuu[0] == contenuu[0].toLowerCase()) {
+                    document.getElementById("errorcontenuu").textContent = "contenuu has to start by a capital letter!";
+                    document.getElementById("errorcontenuu").style.color = "red";
+                    return 0;
+                }
+                 else {
+                    document.getElementById("errorcontenuu").textContent = "contenuu Verified";
+                    document.getElementById("errorcontenuu").style.color = "green";
+                    return 1;
+                }
+    }</script>
 
 
 
@@ -26,8 +45,6 @@ if (isset($_POST['contenu'] ))
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="assets/fonts/line-icons.css">
@@ -41,27 +58,18 @@ if (isset($_POST['contenu'] ))
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-  
     <link href="inscription.css" rel="stylesheet" /> 
 
 </head>
-
-
-
     <body>
-   
     <div class="form_wrapper" >
    <div class="form_container"> 
     <div class="title_container">
       <h2>commentaire</h2>
     </div>
     <div class="row">
-    <div class="">
-    
-   
-
+    <div class=""> 
 </div>
-
 </div>
     
 <div class="row clearfix">
@@ -69,11 +77,13 @@ if (isset($_POST['contenu'] ))
    <form id="form" action="" method="POST" onsubmit="return verif();">
     
          
-   <div class="wrap-input3 validate-input" >
-						<input class="input3" id="contenu" type="text" name="contenu" placeholder="contenu">
-						<span class="focus-input3"></span>
+            <div class="wrap-input3 validate-input" >
+						<input class="input3" id="contenu" type="text" name="contenu" placeholder="contenu" >
+						<span class="focus-input3" onblur="saisircontenu()"></span>
 					</div>
 					<div class="container-contact3-form-btn">
+            <br>
+            <br>
                     <input   class="contact3-form-btn" type="submit" value="ajouter " >
 					</div>
                     
