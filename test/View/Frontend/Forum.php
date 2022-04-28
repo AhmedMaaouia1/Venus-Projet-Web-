@@ -139,7 +139,7 @@ if (isset($_POST["submit"])) {
                             </article>
     
           
-            
+                       
  <?php   
   require_once ('C:/xampp/htdocs/Forumm/view/PHP-MySQLi-Database-Class-master/MysqliDb.php');
 
@@ -184,8 +184,9 @@ if (isset($_POST["submit"])) {
                                     <p><?= $Topic['contenu']; ?></p>
                                     
                                     <ul class="blog-info-link">
-                                    <li><a><?='&nbsp;<a data-postid="'.$Topic['idtopic'].'" data-likes="'.$Topic['like_count'].'" class="like fa-solid fa-thumbs-up" ">Like ('.$Topic['like_count'].')</a>'; ?></a></li>
-                                    <li><a><?='&nbsp;<a data-postid="'.$Topic['idtopic'].'" data-dislikes="'.$Topic['dislike_count'].'" class="dislike fa-solid fa-thumbs-down" ">Dislike ('.$Topic['dislike_count'].')</a>'; ?></a></li>
+                                    <li><?='<a "'.$Topic['idtopic'].'" "'.$Topic['view_count'].'" class="view fa-solid fa-eye" "> ('.$Topic['view_count'].')</a>'; ?></li>
+                                    <li><?='<a data-postid="'.$Topic['idtopic'].'" data-likes="'.$Topic['like_count'].'" class="like fa-solid fa-thumbs-up" ">Like ('.$Topic['like_count'].')</a>'; ?></li>
+                                    <li><?='<a data-postid="'.$Topic['idtopic'].'" data-dislikes="'.$Topic['dislike_count'].'" class="dislike fa-solid fa-thumbs-down" ">Dislike ('.$Topic['dislike_count'].')</a>'; ?></li>
                                         <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
                                     </ul>
                                 </div>
@@ -235,18 +236,7 @@ function(data, status){
 });
 });
 
-$(".view").click(function(){
-    let i = $(this)
-    let post_id = $(i).data('postid')
-$.post("forum.php",
-{
-    'view' : post_id
-},
-function(data, status){
-    $(i).html("view (" + ($(i).data('views')+1) + ")")
-    $(i).data('views', $(i).data('views')+1)
-});
-});
+
 </script>
 <!---end dislike like script---->
 </body>

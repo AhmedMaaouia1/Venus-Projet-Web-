@@ -1,15 +1,32 @@
 
 <?php
                             require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/commentsC.php';
-                           
+                            require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
+                            require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Model/topic.php';
 
                          
                             $id=$_GET["id"];
                           $CommentsC = new commentsC();
                             $Comments = $CommentsC->afficherTcomments($id);
                              require 'Header.php'; 
-                        ?>
+                        
+     
+    
+   
+   $connexionDB = connexionDB::getConnexion();
+   $requete = "UPDATE Topic SET view_count=view_count+1 where idtopic=:id";
+   
+       $querry = $connexionDB->prepare($requete);
+       $querry->execute(
+           [
+               'id'=>$id
+           ]
+       );
+      
+       
+   
 
+?>         
 <html lang="en">
     
     
