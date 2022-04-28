@@ -35,21 +35,21 @@ if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) 
         <div class="dashboard-wrapper">
             <div class="container-fluid">
                                                 <br><br><br>
-                                    <form action="" method="POST">
+                                    <form action="" method="POST" id="myform">
                                             <table border="1" align="center">
                                                 <tr>
                                                     <td>
                                                         <label for="titre">titre:
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $a['titre'];?>" name="titre" id="titre" maxlength="20"></td>
+                                                    <td><input type="text" value="<?php echo $a['titre'];?>" name="titre" id="titre"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <label for="descrip">description:
                                                         </label>
                                                     </td>
-                                                    <td><input type="text" value="<?php echo $a['descrip'];?>" name="descrip" id="descrip" maxlength="40"></td>
+                                                    <td><input type="text" value="<?php echo $a['descrip'];?>" name="descrip" id="description"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -68,6 +68,8 @@ if (isset($_GET['id'] ) && isset($_POST['titre'] ) && isset($_POST['descrip'] ) 
                                                 </tr>
                                             </table>
                                         </form>
+                                        <p style="color: red;" id="erreur"></p>  
+                                    <script src="assets/js/Forum.js"></script>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@ if (isset($_POST['titre'] ) && isset($_POST['description'] ) && isset($_POST['co
 
     <body>
     <h1>ajouter un Forum</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" id ="myform">
                                         <table border="1" align="center">
                                            
                                             <tr>
@@ -40,7 +40,7 @@ if (isset($_POST['titre'] ) && isset($_POST['description'] ) && isset($_POST['co
                                                     </label>
                                                 </td>
                                                 <td><input type="text" name="contenu" id="contenu" maxlength="1000"></td>
-                                            </tr>    
+                                            </tr>   
                                             <tr>
                                                 <td>
                                                     <input type="submit" value="Envoyer"> 
@@ -51,6 +51,8 @@ if (isset($_POST['titre'] ) && isset($_POST['description'] ) && isset($_POST['co
                                             </tr>
                                         </table>
                                     </form>
+                                    <p style="color: red;" id="erreur"></p>  
+                                    <script src="assets/js/Forum.js"></script>
     </body>
 </HTML>
 

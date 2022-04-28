@@ -14,29 +14,7 @@ if (isset($_POST['contenu'] ))
         header('Location:Forum.php');
 }
  require 'Header.php' ?>
-<script>
-    
-    function saisircontenu() {
-                var contenuu = document.getElementById('contenu').value;
-                var regex = /^[A-Za-z]+$/;
 
-
-                if (!(regex.test(contenuu))) {
-                    document.getElementById("errorcontenuu").textContent = "contenuu has to be composed of letters only!";
-                    document.getElementById("errorcontenuu").style.color = "red";
-                    return 0;
-                } 
-                else if (contenuu[0] == contenuu[0].toLowerCase()) {
-                    document.getElementById("errorcontenuu").textContent = "contenuu has to start by a capital letter!";
-                    document.getElementById("errorcontenuu").style.color = "red";
-                    return 0;
-                }
-                 else {
-                    document.getElementById("errorcontenuu").textContent = "contenuu Verified";
-                    document.getElementById("errorcontenuu").style.color = "green";
-                    return 1;
-                }
-    }</script>
 
 
 
@@ -74,27 +52,27 @@ if (isset($_POST['contenu'] ))
     
 <div class="row clearfix">
   <div class="">
-   <form id="form" action="" method="POST" onsubmit="return verif();">
+   <form id="myform" action="" method="POST" >
     
          
             <div class="wrap-input3 validate-input" >
 						<input class="input3" id="contenu" type="text" name="contenu" placeholder="contenu" >
-						<span class="focus-input3" onblur="saisircontenu()"></span>
+
+						<span class="focus-input3"></span>
 					</div>
 					<div class="container-contact3-form-btn">
             <br>
             <br>
                     <input   class="contact3-form-btn" type="submit" value="ajouter " >
 					</div>
-                    
+              <p style="color: red;" id="erreur"></p>      
 
         </form>
+        <script src="Comment.js"></script>
       </div>
     </div>
   </div>
 </div>
-
-
 </body>
 
 </html>

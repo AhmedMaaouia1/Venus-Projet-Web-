@@ -38,7 +38,7 @@ else {
         <div class="dashboard-wrapper">
             <div class="container-fluid">
                                                 <br><br><br>
-                                    <form action="" method="POST">
+                                    <form action="" method="POST" id="myform">
                                             <table border="1" align="center">
                                                
                                                 <tr>
@@ -58,6 +58,8 @@ else {
                                                 </tr>
                                             </table>
                                         </form>
+                                        <p style="color: red;" id="erreur"></p>  
+                                    <script src="assets/js/Comment.js"></script>
             </div>
         </div>
     </div>

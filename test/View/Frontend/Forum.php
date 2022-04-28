@@ -29,7 +29,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
     <!--<link rel="stylesheet"  href="event.css">-->
     <!-- CSS here -->
-        <link rel="stylesheet" href="assets1/css/style.css">
+    <link rel="stylesheet" href="assets1/css/style.css">
+
+
+
+
 </head>
 
     
@@ -94,7 +98,8 @@ if (isset($_POST["submit"])) {
                                     </a>
                                     <p><?php echo $Topic->contenu; ?></p>
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                  
+                                        <li><h6><?php '<button data-postid="'.$topic['idtopic'].'" data-likes="'.$topic['like_count'].'" class="like">Like ('.$topic['like_count'].')</button><hr />'; ?></h6>
                                         <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
                                     </ul>
                                 </div>
@@ -135,8 +140,28 @@ if (isset($_POST["submit"])) {
     
           
             
- <?php                 
-                
+ <?php   
+  require_once ('C:/xampp/htdocs/Forumm/view/PHP-MySQLi-Database-Class-master/MysqliDb.php');
+
+  $db = new MysqliDb ('localhost', 'root', '', 'forum');
+  $topic = $db->get('topic');
+  
+  if (isset($_POST['like'])) {
+   $post_id = $_POST['like'];
+   $query = Array('like_count'=>$db->inc(1));
+   $db->where('idtopic', $post_id);
+   $db->update('topic', $query);
+  
+   $db->insert('likes', Array('post_id'=>$post_id));              
+  }
+  if (isset($_POST['dislike'])) {
+    $post_id = $_POST['dislike'];
+    $query = Array('dislike_count'=>$db->inc(1));
+    $db->where('idtopic', $post_id);
+    $db->update('topic', $query);
+   
+    $db->insert('dislikes', Array('post_id'=>$post_id));              
+   }
                     $i=0;
                         foreach ($Topics as $Topic) {
                          $i++;  
@@ -157,8 +182,10 @@ if (isset($_POST["submit"])) {
                                         <h4><?= $Topic['descrip']; ?></h4>
                                     </a>
                                     <p><?= $Topic['contenu']; ?></p>
+                                    
                                     <ul class="blog-info-link">
-                                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                                    <li><a><?='&nbsp;<a data-postid="'.$Topic['idtopic'].'" data-likes="'.$Topic['like_count'].'" class="like fa-solid fa-thumbs-up" ">Like ('.$Topic['like_count'].')</a>'; ?></a></li>
+                                    <li><a><?='&nbsp;<a data-postid="'.$Topic['idtopic'].'" data-dislikes="'.$Topic['dislike_count'].'" class="dislike fa-solid fa-thumbs-down" ">Dislike ('.$Topic['dislike_count'].')</a>'; ?></a></li>
                                         <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
                                     </ul>
                                 </div>
@@ -176,16 +203,52 @@ if (isset($_POST["submit"])) {
                
             </div>
 
-
-      
-
    
-
+<!------dislike script---->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(".like").click(function(){
+    let button = $(this)
+    let post_id = $(button).data('postid')
+$.post("forum.php",
+{
+    'like' : post_id
+},
+function(data, status){
+    $(button).html("Like (" + ($(button).data('likes')+1) + ")")
+    $(button).data('likes', $(button).data('likes')+1)
+});
+});
+$(".dislike").click(function(){
+    let button = $(this)
+    let post_id = $(button).data('postid')
+    
+    
+$.post("forum.php",
+{
+    'dislike' : post_id
+},
+function(data, status){
+    $(button).html("dislike (" + ($(button).data('dislikes')+1) + ")")
+    $(button).data('dislikes', $(button).data('dislikes')+1)
  
+});
+});
 
-
-
-
+$(".view").click(function(){
+    let i = $(this)
+    let post_id = $(i).data('postid')
+$.post("forum.php",
+{
+    'view' : post_id
+},
+function(data, status){
+    $(i).html("view (" + ($(i).data('views')+1) + ")")
+    $(i).data('views', $(i).data('views')+1)
+});
+});
+</script>
+<!---end dislike like script---->
 </body>
 
 </html>
