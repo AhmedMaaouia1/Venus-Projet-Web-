@@ -1,9 +1,6 @@
 <?php require 'Header_Admin.php'; 
-$connection = mysqli_connect('localhost', 'root', '', 'forum');
-$result = mysqli_query($connection, "SELECT * FROM topic");
-//if($result){
-//    echo "CONNECTED";
-//}
+
+
 ?>
 
 <!doctype html>
@@ -18,24 +15,20 @@ $result = mysqli_query($connection, "SELECT * FROM topic");
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['titre', 'like_count', 'dislike_count','view_count'],
-
-                <?php
-
-                    if(mysqli_num_rows($result)> 0){
-
-                        while($row = mysqli_fetch_array($result)){
-
-                            echo "['".$row['titre']."', '".$row['like_count']."', '".$row['dislike_count']."','".$row['view_count']."'],";
-
-                        }
-
-
-                    }
-
-
-
-                ?>
+                ['titre', 'view_count', 'like_count', 'dislike_count'],
+          <?php
+           $connection = mysqli_connect('localhost', 'root', '', 'forum');
+           $result = mysqli_query($connection, "SELECT * FROM topic");
+            while($data=mysqli_fetch_array($result)){
+              $titre=$data['titre'];
+              $view_count=$data['view_count'];
+              $like_count=$data['like_count'];
+              $dislike_count=$data['dislike_count'];
+           ?>
+           ['<?php echo $titre;?>',<?php echo $view_count;?>,<?php echo $like_count;?>,<?php echo $dislike_count;?>],   
+           <?php   
+            }
+           ?> 
 
             ]);
             var options = {
@@ -47,7 +40,7 @@ $result = mysqli_query($connection, "SELECT * FROM topic");
                 }
             };
 
-            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
@@ -56,7 +49,7 @@ $result = mysqli_query($connection, "SELECT * FROM topic");
 </head>
 <body>
 
-<div id="columnchart_material" style="width: 100%; height: 500px;"></div>
+<div id="barchart_material" style="width: 100%; height: 500px;"></div>
 
 
 </body>
