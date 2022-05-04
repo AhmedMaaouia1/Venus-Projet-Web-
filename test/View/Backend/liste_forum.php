@@ -7,6 +7,7 @@
 
 
 <a href="ajoutertopic.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Ajouter un Forum</a>
+<a href="charts.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Stats</a>
 
 
 </div>
