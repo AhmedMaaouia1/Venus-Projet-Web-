@@ -65,23 +65,33 @@
                 </div>
             </div>
         </div>
-       
+        <br>
+        <form method="post">
+<label>Search</label>
+<input type="text" name="search">
+<input type="submit" name="submit">
+	
+</form>
+
+</div>
+      <br> 
 <?php
     require_once 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/View/connexiondb.php';
 $connexiondb=connexiondb::getConnexion();
 
 if (isset($_POST["submit"])) {
 	$str = $_POST["search"];
-	$sth = $connexiondb->prepare("SELECT * FROM `topic` WHERE titre = '$str'");
+	$sth = $connexiondb->prepare("SELECT * FROM `topic` WHERE titre = '$str' OR descrip='$str' OR contenu='$str'");
 
 	$sth->setFetchMode(PDO:: FETCH_OBJ);
 	$sth -> execute();
 
 	if($Topic = $sth->fetch())
-	{
+	{   
 		?>
 		
         <article class="blog_item">
+            <br>
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
                                     
@@ -92,22 +102,25 @@ if (isset($_POST["submit"])) {
                                 </div>
 
                                 <div class="blog_details">
-                                    <a class="d-inline-block" href="regle.php">
+                                    <a class="d-inline-block" href="">
                                         <h2><?php echo $Topic->titre; ?></h2>
                                         <h4><?php echo $Topic->descrip; ?></h4>
                                     </a>
                                     <p><?php echo $Topic->contenu; ?></p>
                                     <ul class="blog-info-link">
                                   
-                                        <li><h6><?php '<button data-postid="'.$topic['idtopic'].'" data-likes="'.$topic['like_count'].'" class="like">Like ('.$topic['like_count'].')</button><hr />'; ?></h6>
-                                        <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
+                                    <li><?='<a "'.$Topic->idtopic.'" "'.$Topic->view_count.'" class="view fa-solid fa-eye" "> ('.$Topic->view_count.')</a>'; ?></li>
+                                 
+                                    <li><?='<a data-postid="'.$Topic->idtopic.'" data-likes="'.$Topic->like_count.'" class="like fa-solid fa-thumbs-up" ">Like ('.$Topic->like_count.')</a>'; ?></li>
+                                    <li><?='<a data-postid="'.$Topic->idtopic.'" data-dislikes="'.$Topic->dislike_count.'" class="dislike fa-solid fa-thumbs-down" ">Dislike ('.$Topic->dislike_count.')</a>'; ?></li>
+                                        <li><a href="comments.php?id=<? echo$Topic->idtopic; ?>"><i class="fa fa-comments"></i> Comments</a></li>
                                     </ul>
                                 </div>
                             </article>
         
        
 <?php 
-	}
+	} 
 		
 		
 		else{
@@ -172,8 +185,11 @@ if (isset($_POST["submit"])) {
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="assets1/img/blog/single_blog_2.png" alt="">
                                     <a href="#" class="blog_item_date">
-                                        <h3>15</h3>
-                                        <p>Jan</p>
+                                    <?php
+    if ($Topic['view_count'] >=6){
+      
+     ?><p>Most Viewed</p> <?php   }?>
+                                        
                                 </div>
 
                                 <div class="blog_details">
@@ -184,7 +200,11 @@ if (isset($_POST["submit"])) {
                                     <p><?= $Topic['contenu']; ?></p>
                                     
                                     <ul class="blog-info-link">
-                                    <li><?='<a "'.$Topic['idtopic'].'" "'.$Topic['view_count'].'" class="view fa-solid fa-eye" "> ('.$Topic['view_count'].')</a>'; ?></li>
+                                    <li><?='<a "'.$Topic['idtopic'].'" "'.$Topic['view_count'].'" class="view fa-solid fa-eye" "> ('.$Topic['view_count'].')</a>'; ?>
+      <a> </a>      
+                                
+                                </li>
+                                    
                                     <li><?='<a data-postid="'.$Topic['idtopic'].'" data-likes="'.$Topic['like_count'].'" class="like fa-solid fa-thumbs-up" ">Like ('.$Topic['like_count'].')</a>'; ?></li>
                                     <li><?='<a data-postid="'.$Topic['idtopic'].'" data-dislikes="'.$Topic['dislike_count'].'" class="dislike fa-solid fa-thumbs-down" ">Dislike ('.$Topic['dislike_count'].')</a>'; ?></li>
                                         <li><a href="comments.php?id=<?= $Topic['idtopic']; ?>"><i class="fa fa-comments"></i>  Comments</a></li>
