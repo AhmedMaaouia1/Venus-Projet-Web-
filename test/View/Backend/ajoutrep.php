@@ -1,16 +1,38 @@
 <?php require 'Header_Admin.php'; ?>
-<?php
-include 'C:/xampp/htdocs/code/test/test/Controller/ReponseC.php';
-require_once 'C:/xampp/htdocs/code/test/test/Model/Reponse.php';
-   
-if (isset($_POST["reply"])) 
 
-{
-    $Reponse = new Reponse($_POST['reply']);
-        $ReponseC = new ReponseC();
-        $ReponseC->ajouterrep($Reponse);
-        header('Location:liste_reponse.php');
-}
+<?php
+    include_once 'C:/xampp/htdocs/code/test/test/Model/Reponse.php';
+    include_once 'C:/xampp/htdocs/code/test/test/Controller/ReponseC.php';
+
+   
+
+    // create reclamation
+    $Reponse = null;
+
+    // create an instance of the controller
+    $ReponseC = new ReponseC();
+    if (
+        isset($_POST["reply"]) 
+		
+    ) {
+        if (
+            !empty($_POST["reply"]) 
+			
+        ) {
+            $Reponse = new Reponse(
+                $_POST['reply'],
+                $_POST['id_reclamation']
+				
+            );
+            
+            if($test == false )
+            {
+                $ReponseC->ajoutrep($Reponse);
+               
+                header('Location:liste_reponse.php');
+            }
+           
+    }}
 ?>
 <HTML>
     <head>

@@ -7,14 +7,16 @@ if (isset($_POST["prenom_reclamation"]) &&
 isset($_POST["nom_reclamation"]) &&	
 isset($_POST["mail_reclamation"]) &&	
 isset($_POST["sujet_reclamation"]) && 
-isset($_POST["message_reclamation"])) 
+isset($_POST["message_reclamation"]) ) 
 {
     $reclamation = new Reclamation(
         $_POST['prenom_reclamation'],
         $_POST['nom_reclamation'],
         $_POST['mail_reclamation'], 
         $_POST['sujet_reclamation'],
-        $_POST['message_reclamation']);
+        $_POST['message_reclamation'],
+        echo $date_reclamation = date('Y-m-d ');,
+    );
         $ReclamationC = new ReclamationC();
         $ReclamationC->ajouterrec($Reclamation);
         header('Location:liste_reclamation.php');
@@ -63,6 +65,11 @@ isset($_POST["message_reclamation"]))
                                                     </label>
                                                 </td>
                                                 <td><input type="text" name="message_reclamation" id="message_reclamation" maxlength="1000"></td>
+                                            </tr>   
+                                            <label for="date_reclamation">date_reclamation :
+                                                    </label>
+                                                </td>
+                                                <td><input type="text" name="date_reclamation" id="date_reclamation" maxlength="1000"></td>
                                             </tr>   
                                             <tr>
                                                 <td>

@@ -15,6 +15,8 @@
         isset($_POST["mail_reclamation"]) &&	
         isset($_POST["sujet_reclamation"]) && 
         isset($_POST["message_reclamation"])
+        
+       
     ) {
         if (
             !empty($_POST["prenom_reclamation"]) &&
@@ -30,8 +32,7 @@
                 $_POST['sujet_reclamation'],
                 $_POST['message_reclamation']
             );
-            // $mail= $reclamation->getmail();
-            // $test = $reclamationC->verification($mail);
+            
             if($test == false )
             {
                 $reclamationC->ajouterrec($reclamation);
@@ -45,5 +46,7 @@
         }
         else
             $error = "Missing information";
+    }else{
+        header('Location:liste_reclamations.php');
     }
 ?>

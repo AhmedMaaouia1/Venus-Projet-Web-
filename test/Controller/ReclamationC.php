@@ -1,5 +1,5 @@
 <?php
-	include 'C:/xampp/htdocs/code/test/test/View/connexiondb.php';
+	require_once 'C:/xampp/htdocs/code/test/test/View/connexiondb.php';
 	include_once 'C:/xampp/htdocs/code/test/test/Model/Reclamation.php';
 
 	class ReclamationC {
@@ -44,6 +44,8 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+          
+		//function date(){$date_reclamation = date('Y-m-d');}
 
 		function ajouterrec($Reclamation){
             $connexionDB = connexionDB::getConnexion();
@@ -79,32 +81,85 @@
 				die('Erreur: '.$e->getMessage());
 			}
 		}
+
+	
+
+		function rechercherrec($prenom_reclamation){
+			$sql="SELECT * FROM recl where prenom_reclamation like '" .$prenom_reclamation."' ";
+			$db = config::getConnexion();
+			
+			try{
+				
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch(Exception $e){
+				die('Erreur:'. $e->getMeesage());
+			}
+		}
 		
 		function modifierrec($Reclamation, $id){
 			try {
 				$db = connexiondb::getConnexion();
 				$query = $db->prepare(
 					'UPDATE recl SET 
-						preom_reclamation= :prenom_reclamation, 
+						prenom_reclamation= :prenom_reclamation, 
 						nom_reclamation= :nom_reclamation, 
 						mail_reclamation= :mail_reclamation, 
 						sujet_reclamation= :sujet_reclamation, 
 						message_reclamation= :message_reclamation
-					WHERE id_reclamation= :id'
+					WHERE id_reclamation= :id_reclamation'
 				);
 				$query->execute([
-					'prenom_reclamation' => $Reclamation->getprenom(),
-					'nom_reclamation' => $Reclamation->getnom(),
-					'mail_reclamation' => $Reclamation->getmail(),
-					'sujet_reclamation' => $Reclamation->getsjt(),
-                    'message_reclamation' => $Reclamation->getmsg(),
-					'id_reclamation' => $id
+					'prenom_reclamation'=>$Reclamation->getprenom(),
+                    'nom_reclamation'=>$Reclamation->getnom(),
+                    'mail_reclamation'=>$Reclamation->getmail(),
+					'sujet_reclamation'=>$Reclamation->getsjt(),
+					'message_reclamation'=>$Reclamation->getmsg(),
+					'id_reclamation'=> $id
 				]);
 				echo $query->rowCount() . " records UPDATED successfully <br>";
 			} catch (PDOException $e) {
 				$e->getMessage();
 			}
 		}
+
+		public function search()
+        {
+            if(isset($_GET['s'])){
+                $c=$_GET['s'];
+                try {
+                    $con=connexiondb::getConnexion();
+                    // Create sql statment
+                    $sql = "SELECT * FROM `recl` WHERE `nom_reclamation` LIKE '$c%'";
+                    $resultp = $con->query($sql);
+                    return $resultp; 
+                } catch (Exception $e) {
+                    echo "Error " . $e->getMessage();
+                    exit();
+                }
+
+            }
+        }
+		public function sortby()
+        {
+            if(isset($_GET['sort'])){
+                $c=$_GET['sort'];
+                try {
+                    $con=connexiondb::getConnexion();
+                    // Create sql statment
+                    $sql = " select * from recl order by $c";
+                    $resultp = $con->query($sql);
+                    return $resultp;
+                } catch (Exception $e) {
+                    echo "Error " . $e->getMessage();
+                    exit();
+                }
+
+            }
+        }
+        
+
 
 	}
 ?>

@@ -41,8 +41,8 @@
 
 <div class="col-lg-3 col-md-5 col-5 text-end">
 
-<form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" method="get">
+              <input class="form-control me-2" type="search" name="s" placeholder="Search" aria-label="Search">
               <button class="btn btn" style="background-color:#fd6c9e ; color : white"type="submit">Search</button>
             </form>
 

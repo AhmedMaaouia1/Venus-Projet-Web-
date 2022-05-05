@@ -7,13 +7,17 @@
 		private $mail_reclamation;
 		private $sujet_reclamation;
         private $message_reclamation;
+		
+		
 
-		function __construct( $prenom_reclamation,$nom_reclamation, $mail_reclamation, $sujet_reclamation, $message_reclamation){
+		function __construct( $prenom_reclamation,$nom_reclamation, $mail_reclamation, $sujet_reclamation, $message_reclamation ){
 			$this->prenom_reclamation=$prenom_reclamation;
 			$this->nom_reclamation=$nom_reclamation;
 			$this->mail_reclamation=$mail_reclamation;
             $this->sujet_reclamation=$sujet_reclamation;
             $this->message_reclamation=$message_reclamation;
+			
+			
           
 		}
 		function getid(){
@@ -35,6 +39,7 @@
         function getmsg(){
 			return $this->message_reclamation;
 		}
+		
 	
 		function setprenom(string $prenom_reclamation){
 			$this->prenom_reclamation=$prenom_reclamation;
@@ -55,6 +60,7 @@
 		function setmsg(string $message_reclamation){
 			$this->message_reclamation=$message_reclamation;
 		}
+		
 	}
 
 
