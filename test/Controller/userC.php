@@ -1,8 +1,8 @@
 <?php
  // session_start();
  
-	include_once 'C:/xampp/htdocs/test/View/connexiondb.php';
-	include_once 'C:/xampp/htdocs/test/Model/user.php';
+	include_once 'C:/xampp/htdocs/1/test/View/connexiondb.php';
+	include_once 'C:/xampp/htdocs/1/test/Model/user.php';
 	
 	class UserC {
 		function afficherusers(){

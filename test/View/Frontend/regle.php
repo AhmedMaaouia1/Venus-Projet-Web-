@@ -2,7 +2,7 @@
 
 
 <?php
-                            require 'C:/xampp/htdocs/ESSAI 1 INTEGRATION/test/Controller/topicC.php';
+                            require '../../Controller/topicC.php';
 
                         
                             $TopicC = new topicC();

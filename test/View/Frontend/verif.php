@@ -1,5 +1,5 @@
 <?php 
-include_once 'C:/xampp/htdocs/test/View/connexiondb.php';
+include_once '../../View/connexiondb.php';
 $db = connexiondb::getConnexion();
 if(isset($_GET['email'], $_GET['key']) AND !empty($_GET['email']) AND !empty($_GET['key']))
 {

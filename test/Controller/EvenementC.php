@@ -1,6 +1,6 @@
 <?php
-	include 'C:/xampp/htdocs/Venusi/View/connexiondb.php';
-	include_once 'C:/xampp/htdocs/Venusi/Model/Evenement.php';
+	include '../../View/connexiondb.php';
+	include_once '../../Model/Evenement.php';
 	class EvenementC {
 		function afficherEvenements(){
 			$sql="SELECT * FROM evenement";

@@ -5,15 +5,17 @@
         private $titre;
         private $descrip;
         private $contenu;
-
+		
 
 
         function __construct($titre, $descrip, $contenu){
 			$this->titre=$titre;
 			$this->descrip=$descrip;
 			$this->contenu=$contenu;
+			
 		}
-
+		
+		
 		function setidtopic(int $idtopic){
 			$this->idtopic=$idtopic;
 		}
@@ -26,10 +28,10 @@
         function setcontenu(string $contenu){
 			$this->contenu=$contenu;
 		}
-
 		function getidtopic(){
 			return $this->idtopic;
 		}
+		
 		function gettitre(){
 			return $this->titre;
 		}

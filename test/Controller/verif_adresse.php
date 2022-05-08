@@ -3,7 +3,7 @@ session_start();
 
     include_once '../Model/user.php';
     include_once 'userC.php';
-    include_once 'C:/xampp/htdocs/test/View/connexiondb.php';
+    include_once 'C:/xampp/htdocs/1/test/View/connexiondb.php';
 $db = connexiondb::getConnexion();
 
     $error = "";

@@ -7,7 +7,7 @@
     Class topicC {
 
     
-
+       
         function affichertopic()
         {
             $requete = "select * from topic";
@@ -55,6 +55,7 @@
                     'titre'=>$Topic->gettitre(),
                     'descrip'=>$Topic->getdescrip(),
                     'contenu'=>$Topic->getcontenu(),
+                    
                 ]);
             } catch (PDOException $th) {
                  $th->getMessage();

@@ -5,7 +5,7 @@ require_once '../../Model/topic.php';
    
 if (isset($_POST['titre'] ) && isset($_POST['description'] ) && isset($_POST['contenu'] )) 
 {
-        $Topic = new topic( $_POST['titre'] ,$_POST['description'] ,$_POST['contenu']);
+        $Topic = new topic( $_POST['titre'] ,$_POST['description'] ,$_POST['contenu'], NULL);
         $TopicC = new topicC();
         $TopicC->ajoutertopic($Topic);
         header('Location:liste_forum.php');

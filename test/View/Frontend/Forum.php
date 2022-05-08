@@ -74,12 +74,10 @@
     <i class="fas fa-search"></i>
   </button>
   </div>
- 
-
 	
 </form>
 
-</div>
+
       
 <?php
     require_once '../connexiondb.php';

@@ -1,5 +1,5 @@
 <?php
-    include_once '../../Model/user.php';
+    include_once '../Model/user.php';
     include_once 'userC.php';
 
     
