@@ -35,7 +35,7 @@
     
 <div class="row clearfix">
   <div class="">
-   <form method="POST"  id="form" action="../../Controller/ajout_reclamation.php">
+   <form method="POST"  id="form" action="../../Controller/ajout_reclamation.php" >
      <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
        <input type="email" id="email"  name="mail_reclamation" placeholder="Email"  />
        <span id="mailer"></span>

@@ -45,23 +45,28 @@
         }
 		}
 
-		function ajouterrep($Reponse){
-            $connexiondb = connexiondb::getConnexion();
-            try {
-                $querry = $connexiondb->prepare("
-                INSERT INTO rep 
-                (reply)
-                VALUES
-                (:reply)
-                ");
-                $querry->execute([
-                    'reply'=>$Reponse->getreply(),
-                    
-                ]);
-            } catch (PDOException $th) {
-                 $th->getMessage();
-            }
-        }
+	function Ajouterrep($Reponse){
+$sql= "INSERT INTO `rep` VALUES (:id_rep, :repp, :id_rec)";
+    $db = connexiondb::getConnexion();
+try{ $recipesStatement = $db->prepare($sql);
+    $recipesStatement->execute([ 'id_rep'=>$Reponse->getid(),
+                    'repp' =>$Reponse->getreply(),
+                    'id_rec'=>$Reponse->getidrec(),
+                   
+
+
+
+
+    ]);
+ }
+ catch(Exception $e){ 
+    
+             die("erreur:".$e->getMessage());
+
+}
+
+
+}
 		function getrepbyID($id)
         {
             $requete = "select * from rep where id_reponse=:id";
@@ -80,22 +85,34 @@
             }
         }
 		
-        function modifierrep($Reponse,$id_reponse)
-        {
-            $connexionDB = connexionDB::getConnexion();
-            try {
-                $querry = $connexionDB->prepare('
-                UPDATE rep SET
-                reply=:reply
-                where id_reponse=:id_reponse
-                ');
-                $querry->execute([
-                    'id_reponse'=>$id_reponse,
-                    'reply'=>$Reponse->getreply(),
-                ]);
-            } catch (PDOException $th) {
-                 $th->getMessage();
-            }
+      function Modifierpro($prod)
+{
+$sqlc= "UPDATE `rep` SET reply=:repp,id_rec=:rec WHERE id_reponse=:id  ";
+    $db = connexiondb::getConnexion();
+try{ $recipesStatement = $db->prepare($sqlc);
+    $recipesStatement->execute([ 'repp'=>$prod->getreply(),
+                    'rec'=>$prod->getidrec(),
+                  
+                    'id'=>$prod->getid(),
+                 ]);
+}
+ catch(Exception $e){ 
+    
+             die("erreur:".$e->getMessage());
+}
+
+}
+    function supprimerrerep($id){
+        $sql=" DELETE FROM rep WHERE id_reponse=:id";
+         $db = connexiondb::getConnexion();
+        $req = $db->prepare($sql);
+        $req->bindValue(':id' , $id);
+        try{
+            $req->execute();
         }
+        catch(Exception $e){
+            die('Erreur:' . $e->getMessage());
+        }
+    }
     }	
 ?>

@@ -7,7 +7,7 @@ $reponse = new ReponseC;
 $reponse->supprimer();
 if(isset($_GET['sort'])){
     $listeReclamations = $reclamation->sortby(); ;}else if(isset($_GET['s'])){
-    $listeReclamations = $reclamation->search(); }else{$listeReclamations = $reclamation->afficherrec(); }
+    $listeReclamations = $reclamation->search(); }else{$listeReclamations = $reclamation->afficherrectri(); }
 if(isset($_POST["prenom_reclamation"]))
     {  
         $listeReclamations=$reclamation->rechercherrec($_POST["prenom_reclamation"]);
@@ -21,7 +21,7 @@ if(isset($_POST["prenom_reclamation"]))
 <body>
 <div class="container mt-5">
 <h1 class="text-center text-capitalize">liste des reclamations</h1>
-  <a href="filtre.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Filtre</a> 
+  <a href="liste_reclamations.php" class="btn btn" style="background-color:#fd6c9e;color:white" >Retoure</a> 
 <br><br><br><br>
 <div class='table-responsive'>
 <table class='table'>

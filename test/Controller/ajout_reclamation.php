@@ -37,16 +37,16 @@
             {
                 $reclamationC->ajouterrec($reclamation);
                 echo "testAjout";
-                header('Location:../View/Backend/liste_reclamations.php');
+                header('Location:http://localhost/code/test/test/View/Frontend/Chemises.php');
             }
             else
-            header('Location:../View/Frontend/inscription.php?error=error');
+            header('Location:http://localhost/code/test/test/View/Frontend/Chemises.php');
             
             
         }
         else
             $error = "Missing information";
     }else{
-        header('Location:../View/Backend/liste_reclamations.php');
+        header('Location:http://localhost/code/test/test/View/Frontend/Chemises.php');
     }
 ?>

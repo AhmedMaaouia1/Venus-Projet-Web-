@@ -14,6 +14,17 @@
 				die('Erreur:'. $e->getMeesage());
 			}
 		}
+				function afficherrectri(){
+			$sql="SELECT * FROM recl where etat_reclamation like 0";
+			$db = connexiondb::getConnexion();
+			try{
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch(Exception $e){
+				die('Erreur:'. $e->getMeesage());
+			}
+		}
 		function supprimerrec($id){
 			$sql="DELETE FROM recl WHERE id_reclamation=:id";
 			$db = connexiondb::getConnexion();
